@@ -37,13 +37,4 @@
 1. Criar serviços ECS adicionais para quaisquer componentes auxiliares ou microserviços necessários pelo jogo.
 2. Configurar auto scaling para os serviços ECS para ajustar automaticamente o número de tasks em execução com base na demanda.
 
-## Scripts
-
-- **create-ecr-repo.sh**: Script para criar um repositório no Amazon ECR.
-- **build-and-push-image.sh**: Script para construir uma imagem Docker e enviá-la para o ECR.
-- **deploy.sh**: Script para facilitar o deploy da aplicação (em desenvolvimento).
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
