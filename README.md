@@ -14,6 +14,8 @@
 1. Criar um grupo de segurança para o cluster ECS para permitir o tráfego de entrada e saída necessário.
 2. Criar um grupo de segurança para o Application Load Balancer (ALB) para controlar o tráfego de entrada e saída do ALB.
 
+### Abaixo alguns projetos futuros, para converte tudo para o terraform!!
+
 ### 3. Configurar o Application Load Balancer (ALB)
 
 1. Criar um ALB e configurar listeners e target groups para distribuir o tráfego de entrada para as tasks do ECS que estão rodando nas subnets privadas.
