@@ -1,37 +1,49 @@
-# Projeto AWS ECS e ALB
 
-Este projeto tem como objetivo estudar e implementar serviços na AWS utilizando Elastic Container Service (ECS), Elastic Kubernetes Service (EKS), e Application Load Balancer (ALB). Este repositório contém scripts e configurações para criar uma infraestrutura escalável e eficiente na AWS.
+## Passo a Passo
 
-## Objetivo
+### 1. Configurar a VPC
 
-Estudos e desenvolvimento pessoal com foco em adquirir conhecimento avançado e prático nas tecnologias AWS. O objetivo final é qualificar-se para acessar o curso do AWS Skill Builder e desenvolver habilidades essenciais para avançar profissionalmente na área de cloud computing.
+1. Criar uma nova Virtual Private Cloud (VPC).
+2. Configurar quatro subnets: duas subnets públicas para acesso externo e duas subnets privadas para serviços internos.
+3. Configurar três tabelas de roteamento: uma tabela de rota pública para as subnets públicas e duas tabelas de rota privadas para as subnets privadas.
+4. Configurar um Internet Gateway e associá-lo à VPC para habilitar acesso à internet para as subnets públicas.
+5. Configurar um NAT Gateway nas subnets públicas para permitir que instâncias nas subnets privadas acessem a internet de forma segura.
 
-## Tecnologias Utilizadas
+### 2. Configurar os Grupos de Segurança
 
-- **AWS Elastic Container Service (ECS)**
-- **AWS Elastic Kubernetes Service (EKS)**
-- **AWS Application Load Balancer (ALB)**
-- **Terraform** para infraestrutura como código
-- **AWS CLI** para gerenciamento de serviços AWS
+1. Criar um grupo de segurança para o cluster ECS para permitir o tráfego de entrada e saída necessário.
+2. Criar um grupo de segurança para o Application Load Balancer (ALB) para controlar o tráfego de entrada e saída do ALB.
 
-## Estrutura do Projeto
+### 3. Configurar o Application Load Balancer (ALB)
 
-O projeto está organizado da seguinte forma:
+1. Criar um ALB e configurar listeners e target groups para distribuir o tráfego de entrada para as tasks do ECS que estão rodando nas subnets privadas.
 
-├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ ├── outputs.tf
-│ └── ecs-alb-configuration/
-│ ├── ecs.tf
-│ ├── alb.tf
-│ ├── security-groups.tf
-│ └── target-groups.tf
-├── scripts/
-│ ├── deploy.sh
-│ ├── create-ecr-repo.sh
-│ └── push-image.sh
-├── README.md
-└── .gitignore
+### 4. Criar o Cluster ECS
 
+1. Configurar um cluster ECS para gerenciar a aplicação containerizada.
+
+### 5. Definir a Task Definition e os Serviços
+
+1. Criar uma task definition para o jogo Super Mario, especificando a imagem Docker e os recursos necessários.
+2. Configurar serviços ECS para rodar as tasks, associando-as aos target groups do ALB para balanceamento de carga.
+
+### 6. Configurar o Amazon ECR
+
+1. Criar um repositório no Amazon Elastic Container Registry (ECR).
+2. Construir a imagem Docker para o jogo Super Mario e enviá-la para o repositório ECR.
+
+### 7. Deploy do Serviço e Configuração do Auto Scaling
+
+1. Criar serviços ECS adicionais para quaisquer componentes auxiliares ou microserviços necessários pelo jogo.
+2. Configurar auto scaling para os serviços ECS para ajustar automaticamente o número de tasks em execução com base na demanda.
+
+## Scripts
+
+- **create-ecr-repo.sh**: Script para criar um repositório no Amazon ECR.
+- **build-and-push-image.sh**: Script para construir uma imagem Docker e enviá-la para o ECR.
+- **deploy.sh**: Script para facilitar o deploy da aplicação (em desenvolvimento).
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
